@@ -1,3 +1,4 @@
 var mongoose = require('mongoose');
 var localDBURI = 'mongodb://localhost/MandatoryAssignment3_localDB';
-mongoose.connect(localDBURI, { useNewUrlParser: true, useUnifiedTopology: true });
+var dbUri = process.env.MONGODB_URI;
+mongoose.connect(dbUri || localDBURI, { useNewUrlParser: true, useUnifiedTopology: true });
