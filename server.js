@@ -5,12 +5,14 @@ var Score = require('./api/models/score');
 const WSServer = WebSocket.Server;
 var app = require('./app');
 var port = process.env.PORT || 8000;
+var localDB = 'mongodb://localhost/MandatoryAssignment3_localDB';
+var mongoDB = process.env.MONGODB_URI;
 global.websocket;
 
 startMongoDBConnection();
 
 function startMongoDBConnection() {
-  MongoClient.connect('mongodb://localhost/MandatoryAssignment3_localDB', function (err, db) {
+  MongoClient.connect(mongoDB || localDB, function (err, db) {
     startWebSocketServer(db);
   });
 }
